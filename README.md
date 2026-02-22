@@ -8,9 +8,9 @@ Google Meridian is a Bayesian Marketing Mix Modeling (MMM) library developed by 
 
 Windsor.ai makes it easy to fetch marketing performance data from platforms like Google Ads, Facebook, and others. It saves time by eliminating the need to manually consolidate data, making it ideal for feeding into Meridian for analysis.
 
-In our guide, we use Google, Facebook, Reddit and Bing ads data from Windsor.ai where:
-- The KPI is Conversions
-- We model how Spend influences these Conversions over time as per our media channels
+In our guide, we use ads data (Google, Facebook, Reddit etc) from Windsor.ai where:
+- The KPI is Conversions/Revenue
+- We model how Spend influences our KPI over time as per our media channels
 
 🐍 **Installation Requirements**
 
@@ -22,20 +22,31 @@ Make sure you are using Python 3.11 or higher.
 
 📆 Required Libraries
 
-Install the required Python libraries:
+Required Python libraries:
 ```python
-pip install google-meridian tensorflow tensorflow-probability pandas requests psutil
+google-meridian tensorflow tensorflow-probability pandas requests psutil
+```
+
+✅ How To Run The Code
+
+Install the required libraries using the given requirements.txt file.
+```python
+pip install -r requirements.txt
+```
+Run Model.py.
+```python
+python model.py
 ```
 
 🔁 **Data Integration Summary**
 
 To use Windsor.ai data with Google Meridian:
 
-1. Fetch the Data: Use Windsor.ai's API to pull ad performance data with fields like date, spend, impressions, clicks, and conversions.
+1. Fetch the Data: Use Windsor.ai's API to pull ad performance data with fields like date, spend, impressions, clicks, conversions and revenue etc.
 
-2. Format the Data: Aggregate daily performance metrics, fill missing values, and structure it using CsvDataLoader from the Meridian library.
+2. Format the Data: Aggregate weekly performance metrics, fill missing values, and structure it using the function getDataFromWindsor() in data.py file that returns processed_csv_data, kpi, media, media spend, mapping of media to channels and mapping of media spend to channels, start data and end data of the data.
 
-3. Configure the Model: Define ROI priors based on your expected conversions per dollar spend.
+3. Configure the Model: Define ROI priors based on your data requirements.
 
 4. Run the Model: Sample from prior and posterior distributions to fit the Bayesian model.
 
